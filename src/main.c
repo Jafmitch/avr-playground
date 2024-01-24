@@ -6,17 +6,19 @@
 
 // Hardware Macros required by AVR Libc
 /// Baud rate of USART
-#define BAUD 57600
+#define BAUD 9600
 /// Frequency of CPU in Hz
 #define F_CPU 16000000
 
 #include <usart.h>
+#include <util/delay.h>
 
 int main(void)
 {
     USART0_INIT();
-    USART0_PRINT("Hello world!\n", 14);
+    USART0_PRINT("Hello world!\r\n", 14);
 
     while (1) {
+        _delay_ms(1);
     }
 }

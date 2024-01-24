@@ -52,14 +52,15 @@
         UCSR0C = (1 << USBS) | (3 << UCSZ0);     \
     }
 
-#define USART0_PRINT(string_to_print, length)     \
-    {                                             \
-        for (int i = 0; i < length; i++) {        \
-            while (UCSR0A && (1 << UDREn) == 0) { \
-                /* Wait for ready bit */          \
-            }                                     \
-            UDR0 = string_to_print[i];            \
-        }                                         \
+#define USART0_PRINT(string_value, length)           \
+    {                                                \
+        char string_to_print[length] = string_value; \
+        for (int i = 0; i < length; i++) {           \
+            while ((UCSR0A & (1 << UDREn)) == 0) {   \
+                /* Wait for ready bit */             \
+            }                                        \
+            UDR0 = string_to_print[i];               \
+        }                                            \
     }
 
 #endif // USART__H__
