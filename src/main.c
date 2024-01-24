@@ -4,9 +4,19 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-int main(void) {
+// Hardware Macros required by AVR Libc
+/// Baud rate of USART
+#define BAUD 57600
+/// Frequency of CPU in Hz
+#define F_CPU 16000000
 
-    print_uart("Hello world!\n");
+#include <usart.h>
 
-    while (true) {}
+int main(void)
+{
+    USART0_INIT();
+    USART0_PRINT("Hello world!\n", 14);
+
+    while (1) {
+    }
 }
